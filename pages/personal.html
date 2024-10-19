@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Personal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">Gestión Carcelaria</a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="reclusos.html">Gestión de Reclusos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="visitas.html">Control de Visitas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="personal.html">Gestión de Personal</a></li>
+                        <li class="nav-item"><a class="nav-link" href="reportes.html">Reportes de Actividades</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="text-center mt-4">
+            <h2>Gestión de Personal Administrativo</h2>
+            <p>Seleccione el tipo de personal para continuar</p>
+
+            <!-- Botones para seleccionar el tipo de personal -->
+            <div class="d-flex justify-content-center gap-3">
+                <button class="btn btn-dark" onclick="filtrarPersonal('Médico')">Médicos</button>
+                <button class="btn btn-dark" onclick="filtrarPersonal('Psicologo')">Psicólogos</button>
+                <button class="btn btn-dark" onclick="filtrarPersonal('Guardia')">Guardias</button>
+            </div>
+        </div>
+
+        <!-- Sección para mostrar el personal en formato de cards -->
+        <div class="mt-5">
+            <h4 id="tituloPersonal">Todos</h4>
+            <div class="d-flex justify-content-between mb-3">
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAgregar">Añadir Personal</button>
+            </div>
+            <div class="row" id="listaPersonal">
+                <!-- Las cards del personal se mostrarán aquí -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Añadir Personal -->
+    <div class="modal fade" id="modalAgregar" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Añadir Personal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formPersonal">
+                        <div class="mb-3">
+                            <label for="nombrePersonal" class="form-label">Nombre del Personal</label>
+                            <input type="text" class="form-control" id="nombrePersonal" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="generoPersonal" class="form-label">Género</label>
+                            <select class="form-select" id="generoPersonal" required>
+                                <option value="Femenino">Femenino</option>
+                                <option value="Masculino">Masculino</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="rolPersonal" class="form-label">Rol</label>
+                            <select class="form-select" id="rolPersonal" required>
+                                <option value="Médico">Médico</option>
+                                <option value="Guardia">Guardia</option>
+                                <option value="Psicologo">Psicólogo</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Agregar Personal</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Editar Personal -->
+    <div class="modal fade" id="modalEditar" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Personal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formEditarPersonal">
+                        <div class="mb-3">
+                            <label for="editNombrePersonal" class="form-label">Nombre del Personal</label>
+                            <input type="text" class="form-control" id="editNombrePersonal" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editGeneroPersonal" class="form-label">Género</label>
+                            <select class="form-select" id="editGeneroPersonal" required>
+                                <option value="Femenino">Femenino</option>
+                                <option value="Masculino">Masculino</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editRolPersonal" class="form-label">Rol</label>
+                            <select class="form-select" id="editRolPersonal" required>
+                                <option value="Médico">Médico</option>
+                                <option value="Guardia">Guardia</option>
+                                <option value="Psicologo">Psicólogo</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-warning">Guardar Cambios</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Eliminar Personal -->
+    <div class="modal fade" id="modalEliminar" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Eliminar Personal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro de que deseas eliminar este miembro del personal?</p>
+                    <button type="button" class="btn btn-danger" id="btnConfirmarEliminar">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container text-center mt-3">
+            <p>&copy; Sistema de Gestión Carcelaria - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

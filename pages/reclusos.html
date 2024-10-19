@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Reclusos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">Gestión Carcelaria</a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="reclusos.html">Gestión de Reclusos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="visitas.html">Control de Visitas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="personal.html">Gestión de Personal</a></li>
+                        <li class="nav-item"><a class="nav-link" href="reportes.html">Reportes de Actividades</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Botones de acción -->
+        <div class="d-flex justify-content-between mt-4">
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAgregar">Añadir Recluso</button>
+        </div>
+
+        <h2 class="my-4">Lista de Reclusos</h2>
+        <div class="row" id="listaReclusos">
+            <!-- Las cards de los reclusos se mostrarán aquí -->
+        </div>
+    </div>
+
+    <footer>
+        <div class="container text-center mt-3">
+            <p>&copy; Sistema de Gestión Carcelaria - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <!-- Modal para Añadir Recluso -->
+    <div class="modal fade" id="modalAgregar" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Añadir Recluso</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formReclusos">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre del Recluso</label>
+                            <input type="text" class="form-control" id="nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id" class="form-label">Identificación</label>
+                            <input type="text" class="form-control" id="id" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="delito" class="form-label">Delito</label>
+                            <input type="text" class="form-control" id="delito" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="condena" class="form-label">Condena (años)</label>
+                            <input type="number" class="form-control" id="condena" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fechaIngreso" class="form-label">Fecha de Ingreso</label>
+                            <input type="date" class="form-control" id="fechaIngreso" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Agregar Recluso</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Editar Recluso -->
+    <div class="modal fade" id="modalEditar" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Recluso</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formEditarRecluso">
+                        <div class="mb-3">
+                            <label for="editNombre" class="form-label">Nombre del Recluso</label>
+                            <input type="text" class="form-control" id="editNombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editId" class="form-label">Identificación</label>
+                            <input type="text" class="form-control" id="editId" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editDelito" class="form-label">Delito</label>
+                            <input type="text" class="form-control" id="editDelito" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editCondena" class="form-label">Condena (años)</label>
+                            <input type="number" class="form-control" id="editCondena" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editFechaIngreso" class="form-label">Fecha de Ingreso</label>
+                            <input type="date" class="form-control" id="editFechaIngreso" required>
+                        </div>
+                        <button type="submit" class="btn btn-warning">Guardar Cambios</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Eliminar Recluso -->
+    <div class="modal fade" id="modalEliminar" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Eliminar Recluso</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro de que deseas eliminar este recluso?</p>
+                    <button type="button" class="btn btn-danger" id="btnConfirmarEliminar">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
